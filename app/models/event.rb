@@ -58,7 +58,7 @@ class Event < ActiveRecord::Base
   
   def format_people
     (self.candidates.map(&:person_name) + self.people.map(&:full_name)).uniq.join(', ')
-  end 
+  end
   
   def format_location
     v = self.venue
@@ -66,6 +66,14 @@ class Event < ActiveRecord::Base
       [v.name, v.city, v.state, v.postal_code].delete_if { |d| d.nil? or d.blank? }.join(", ")
     else
       ""
+    end
+  end
+  
+  def coords
+    if venue
+      [venue.latitude, venue.longitude]
+    else
+      []
     end
   end
   
