@@ -1,4 +1,4 @@
-$(document).ready ->
+ready = ->
   mapCanvas = document.getElementById('map-canvas')
   data = mapCanvas.dataset
   coords = new (google.maps.LatLng)(data.lat, data.long)
@@ -11,3 +11,6 @@ $(document).ready ->
     position: coords
     map: map)
   return
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
